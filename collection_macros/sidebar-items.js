@@ -1,0 +1,1 @@
+initSidebarItems({"macro":[["btreemap!","Create a `BTreeMap` containing the arguments"],["hashmap!","Create a `HashMap` containing the arguments"]]});
