@@ -1,4 +1,3 @@
-
 /// Create a `HashMap` containing the arguments
 /// 
 /// `hashmap!` allows `HashMap`s to be constructed using minimal syntax:
