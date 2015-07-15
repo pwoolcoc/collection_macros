@@ -5,6 +5,7 @@ authors = ["Paul Woolcock <paul@woolcock.us>"]
 repository = "https://github.com/pwoolcoc/collection_macros"
 homepage = "https://github.com/pwoolcoc/collection_macros"
 license = "MIT"
+documentation = "https://pwoolcoc.github.io/collection_macros"
 description = """
 Collection of macros for collections
 """
