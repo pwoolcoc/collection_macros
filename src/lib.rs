@@ -1,6 +1,11 @@
 #![doc(html_root_url = "https://pwoolcoc.github.io/collection_macros/")]
 #![cfg_attr(feature = "nightly", feature(collections))]
 
+//! Collection Macros
+//! 
+//! A collection of macros to construct collections with minimal syntax
+
+
 /// Create a `HashMap` containing the arguments
 /// 
 /// `hashmap!` allows `HashMap`s to be constructed using minimal syntax:
