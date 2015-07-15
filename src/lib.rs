@@ -1,3 +1,4 @@
+#![doc(html_root_url = "https://pwoolcoc.github.io/collection_macros/")]
 #![cfg_attr(feature = "nightly", feature(collections))]
 
 /// Create a `HashMap` containing the arguments
