@@ -5,7 +5,6 @@
 /// ```
 /// # #[cfg_attr(feature = "nightly", feature(collections))]
 /// # #[macro_use] extern crate collection_macros;
-/// use std::collections::HashMap;
 /// # fn main() {
 /// let m = hashmap!{
 ///     "a" => "foo",
@@ -21,6 +20,7 @@
 #[macro_export]
 macro_rules! hashmap {
     ( $($x:expr => $y:expr),* ) => ({
+        use std::collections::HashMap;
         let mut temp_map = HashMap::new();
         $(
             temp_map.insert($x, $y);
@@ -33,8 +33,7 @@ macro_rules! hashmap {
 }
 
 #[cfg(test)] mod tests {
-    use std::collections::{HashMap};
-
+    use std::collections::HashMap;
     #[test]
     fn test_hashmap() {
         let map = hashmap!{

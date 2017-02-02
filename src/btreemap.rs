@@ -6,7 +6,6 @@
 /// 
 /// ```
 /// # #[macro_use] extern crate collection_macros;
-/// use std::collections::BTreeMap;
 /// # fn main() {
 /// let m = btreemap!{
 ///     1 => "foo",
@@ -21,72 +20,23 @@
 /// # }
 /// ```
 /// 
-#[cfg_attr(feature = "nightly", doc = r#"If you are using nightly, there is a second form to this macro:"#)]
-#[cfg_attr(feature = "nightly", doc = r#""#)]
-#[cfg_attr(feature = "nightly", doc = r#"- Create a `BTreeMap` using the `BTreeMap::with_b` constructor, and a list"#)]
-#[cfg_attr(feature = "nightly", doc = r#"  of `key => value` pairs. This is currently only available on nightly"#)]
-#[cfg_attr(feature = "nightly", doc = r#""#)]
-#[cfg_attr(feature = "nightly", doc = r#"```"#)]
-#[cfg_attr(feature = "nightly", doc = r#"# #![feature(collections)]"#)]
-#[cfg_attr(feature = "nightly", doc = r#"# #[macro_use] extern crate collection_macros;"#)]
-#[cfg_attr(feature = "nightly", doc = r#"use std::collections::BTreeMap;"#)]
-#[cfg_attr(feature = "nightly", doc = r#"# fn main() {"#)]
-#[cfg_attr(feature = "nightly", doc = r#"let m = btreemap!{"#)]
-#[cfg_attr(feature = "nightly", doc = r#"    6;"#)]
-#[cfg_attr(feature = "nightly", doc = r#"    1 => "foo","#)]
-#[cfg_attr(feature = "nightly", doc = r#"    2 => "bar","#)]
-#[cfg_attr(feature = "nightly", doc = r#"    3 => "baz","#)]
-#[cfg_attr(feature = "nightly", doc = r#"    5 => "quux","#)]
-#[cfg_attr(feature = "nightly", doc = r#"};"#)]
-#[cfg_attr(feature = "nightly", doc = r#"assert_eq!(m.get(&1), Some(&"foo"));"#)]
-#[cfg_attr(feature = "nightly", doc = r#"assert_eq!(m.get(&2), Some(&"bar"));"#)]
-#[cfg_attr(feature = "nightly", doc = r#"assert_eq!(m.get(&3), Some(&"baz"));"#)]
-#[cfg_attr(feature = "nightly", doc = r#"assert_eq!(m.get(&5), Some(&"quux"));"#)]
-#[cfg_attr(feature = "nightly", doc = r#"# }"#)]
-#[cfg_attr(feature = "nightly", doc = "```")]
-#[cfg_attr(feature = "nightly", doc = "")]
 #[macro_export]
 macro_rules! btreemap {
-    ( $b:expr; $($x:expr => $y:expr),* ) => ({
-        let mut temp_map = BTreeMap::with_b($b);
-        $(
-            temp_map.insert($x, $y);
-        )*
-        temp_map
-    });
     ( $($x:expr => $y:expr),* ) => ({
+        use std::collections::BTreeMap;
         let mut temp_map = BTreeMap::new();
         $(
             temp_map.insert($x, $y);
         )*
         temp_map
     });
-    ( $b:expr; $($x:expr => $y:expr,)* ) => (
-        btreemap!{$b; $($x => $y),*}
-    );
     ( $($x:expr => $y:expr,)* ) => (
         btreemap!{$($x => $y),*}
     );
 }
 
 #[cfg(test)] mod tests {
-    use std::collections::{BTreeMap};
-
-    #[cfg(feature = "nightly")]
-    #[test]
-    fn test_btreemap_with_b() {
-        let bmap = btreemap! {
-            6;
-            1 => "hello",
-            3 => "blah",
-        };
-
-        let mut should_be = BTreeMap::new();
-        should_be.insert(1, "hello");
-        should_be.insert(3, "blah");
-
-        assert_eq!(bmap, should_be);
-    }
+    use std::collections::BTreeMap;
 
     #[test]
     fn test_btreemap() {

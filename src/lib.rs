@@ -1,5 +1,4 @@
 #![doc(html_root_url = "https://pwoolcoc.github.io/collection_macros/")]
-#![cfg_attr(feature = "nightly", feature(collections))]
 
 //! Collection Macros
 //! 
@@ -7,3 +6,4 @@
 
 #[macro_use] mod hashmap;
 #[macro_use] mod btreemap;
+#[macro_use] mod hashset;

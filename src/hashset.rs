@@ -12,9 +12,9 @@
 ///     "b",
 ///     "c",
 /// ];
-/// assert_eq!(m.contains("a"));
-/// assert_eq!(m.contains("b"));
-/// assert_eq!(m.contains("c"));
+/// assert!(m.contains("a"));
+/// assert!(m.contains("b"));
+/// assert!(m.contains("c"));
 /// # }
 /// ```
 /// 
@@ -43,7 +43,7 @@ macro_rules! hashset {
             "baz",
         ];
 
-        let should_be = HashSet::new();
+        let mut should_be = HashSet::new();
         should_be.insert("foo");
         should_be.insert("bar");
         should_be.insert("baz");
